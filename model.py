@@ -31,10 +31,13 @@ class Gearbox(object):
         if self.currentGear > 0 and not self.clutchEngaged:
             self.currentGear -= 1
 
-
-
     def rotate(self, revolutions):
-        pass
+        if self.clutchEngaged:
+            newRevs = revolutions * self.gears[self.currentGear]
+            for wheel in self.wheels:
+                self.wheels[wheel].rotate(newRevs)
+
+
 
 
 
